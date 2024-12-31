@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>Registration Form</h1>
+        </div>
+        <form id="passwordForm" onsubmit="return validateForm(event)">
+            <div class="name">
+                <label for="Username">Username</label>
+                <input type="text" id="username">
+                <span id="error-username">* Please Enter valid username</span>
+            </div>
+            <div class="name">
+                <label for="Password">Password</label>
+                <input type="password" id="password">
+
+                <span id="error-password">* Password must be at least 6 characters long.</span>
+
+            </div>
+            <div class="name">
+                <label for="Re-Type">Re-Type Password</label>
+                <input type="password" id="retype-password">
+                <span id="error-retype-password">* Password doesnot match</span>
+            </div>
+            <button type="submit" id="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+    <script>
+
+
+
+        function validateForm(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Get the form values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const retypePassword = document.getElementById('retype-password').value;
+
+            // Get the error elements
+            const errorUsername = document.getElementById('error-username');
+            const errorPassword = document.getElementById('error-password');
+            const errorRetypePassword = document.getElementById('error-retype-password');
+
+            // Flag to track if form is valid
+            let isValid = true;
+
+            // Validate username (simple check)
+            if (username === "") {
+                errorUsername.style.display = "inline";
+                isValid = false;
+            } else {
+                errorUsername.style.display = "none";
+            }
+
+            // Validate password length
+            if (password.length < 6) {
+                errorPassword.style.display = "inline";
+                isValid = false;
+            } else {
+                errorPassword.style.display = "none";
+            }
+
+            // Validate re-type password
+            if (password !== retypePassword) {
+                errorRetypePassword.style.display = "inline";
+                isValid = false;
+            } 
+            else 
+            {
+               
+                errorRetypePassword.style.display = "none";
+                
+            }
+
+            // If form is valid, submit the form or take appropriate action
+            if (isValid) {
+                alert('Form submitted successfully!');
+                // You can add code here to submit the form or perform other actions
+            }
+
+            return false; // Prevent form submission for now
+        }
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>
